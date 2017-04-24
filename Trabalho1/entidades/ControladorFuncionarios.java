@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import Trabalho1.entidades.Funcionario.Cargo;
 
 public class ControladorFuncionarios {
+	
+	private final ControladorPrincipal owner;
+//	private TelaFuncionario telaFuncionario;
 	private ArrayList<Funcionario> funcionarios;
 	
+	
+	public ControladorFuncionarios(ControladorPrincipal owner) {
+		this.owner = owner;
+	//	this.telaFuncionario = new TelaFuncionario(this);	
+	}
 	
 	public void addFuncionario(int numeroMatricula, String nome, int dataNascimento, int telefone, Cargo cargo, ArrayList<Veiculo> carros){
 		Funcionario temp = new Funcionario(numeroMatricula, nome, dataNascimento, telefone, cargo, carros);
@@ -27,10 +35,17 @@ public class ControladorFuncionarios {
 		}
 	}
 	
+	public void excluiFuncionario(Funcionario funcionario) {
+		if(funcionario != null && funcionarios.contains(funcionario)) {
+			funcionarios.remove(funcionario);
+		}
+	}	
+	
 	public Funcionario getFuncionario(int numeroMatricula){
 		for (Funcionario funcionario : funcionarios) {
 			if (funcionario.getNumeroMatricula() == numeroMatricula) {
 				return funcionario;
+				break;
 			}
 		}
 		return null;
