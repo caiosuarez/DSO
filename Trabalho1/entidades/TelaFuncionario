@@ -1,0 +1,91 @@
+public class TelaFuncionario {
+    
+    private ControladorFuncionario owner;
+    private Scanner sc;
+    
+    public TelaFuncionario(ControladorFuncionario owner) {
+        this.owner = owner;
+        sc = new Scanner(System.in);
+    }
+    
+    public void exibeTelaFuncionario() {
+        int opcao = 0;
+        do {
+        System.out.println("\nBem vindo a tela do funcionario");
+        System.out.println("Digite 1 para cadastrar funcionario");
+        System.out.println("Digite 2 para alterar funcionario");
+        System.out.println("Digite 3 para excluir funcionario");
+        System.out.println("Digite 4 para listar funcionarios cadastrados");
+        System.out.println("Digite 0 para retornar ao menu principal");
+        opcao = sc.nextInt();
+        trataOpcao(opcao);
+        }while(opcao != 0);
+    }
+
+    public void trataOpcao(int opcao) {
+        switch(opcao) {
+            case 1:
+                telaCadastroFuncionario();
+                break;
+            case 2:
+                telaAlteraFuncionario();  //fazer
+                break;
+            case 3:
+                telaRemoveFuncionario();
+                break;
+        }
+    }
+
+    public void telaCadastroFuncionario() {
+        System.out.println("\nBem vindo a tela de cadastro de funcionario");      
+        System.out.println("\nInsira o numero do id do funcionario");
+        int id = sc.nextInt();
+        sc.nextLine();
+        
+        System.out.println("\nInsira o nome do funcionario");
+        String nome = sc.nextLine();
+        sc.nextLine();
+        
+        System.out.println("\nInsira o numero de matricula do funcionario");
+        int matricula = sc.nextInt();
+        sc.nextLine();
+        
+        System.out.println("\nInsira a data de nascimento do funcionario");
+        int dataNascimento = sc.nextInt();
+        sc.nextLine();
+        
+        System.out.println("\nInsira o telefone do funcionario");
+        int telefone = sc.nextInt();
+        sc.nextLine();
+        
+        System.out.println("\nInsira o cargo do funcionario");
+        String cargo = sc.nextLine();
+        sc.nextLine();
+        
+        owner.cadastraFuncionario(id, matricula, nome, dataNascimento, telefone, cargo);
+    }
+
+    public void telaAlteraFuncionario() {
+        
+    }
+
+    public void telaRemoveFuncionario() {
+        if(owner.haFuncionarios() == false) {
+            return;
+        }    
+        System.out.println("\nBem vindo a tela de remocao de funcionario");
+        
+        
+    }
+    
+    public void mensagemNaoHaFuncionarios() {
+        System.out.println("Nao ha funcionarios cadastrados\n");
+    }
+    
+     public void exibeFuncionario(Funcionario funcionario) {
+        System.out.println("Nome do funcionario: " + funcionario.getNome() + " \nNumero de matricula: " + funcionario.getNumeroMatricula() + "\n");
+    }
+    
+ // ainda nao ta terminado   
+    
+}
